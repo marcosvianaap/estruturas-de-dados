@@ -12,6 +12,10 @@ Arvore::~Arvore() {
     delete raiz;
 }
 
+NoArvore* Arvore::get_Raiz() { 
+    return raiz; 
+}
+
 NoArvore* criaNo(int info){
     NoArvore* novo = new NoArvore(info);
     novo->set_Prim(nullptr);

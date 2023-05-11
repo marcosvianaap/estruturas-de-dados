@@ -19,6 +19,8 @@ private:
 
 public:
     Arvore();
+    ~Arvore();
+    NoArvore* get_Raiz();
     void insereFilho(NoArvore* no, NoArvore* sa);
     bool pertence(int info);
     int altura();

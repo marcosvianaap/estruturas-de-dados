@@ -20,12 +20,18 @@ int main() {
         cout << "0 - Sair" << endl;
         cin >> opcao;
         switch (opcao) {
-            case 1:
-                cout << "Digite a informacao do no: ";
+             case 1:
+                cout << "Digite a informacao do no raiz: ";
                 cin >> info;
-                arvore.insereFilho(new NoArvore(info));
+                arvore.insereFilho(nullptr, new NoArvore(info));
+                do {
+                    cout << "Digite a informacao do no filho (ou -1 para sair): ";
+                    cin >> info;
+                    if (info != -1) {
+                        arvore.insereFilho(arvore.get_Raiz(), new NoArvore(info));
+                    }
+                } while (info != -1);
                 break;
-
             case 2:
                 arvore.imprime();
                 cout << endl;
@@ -55,17 +61,17 @@ int main() {
                 cout << "Arvore copiada:" << endl;
                 copia.imprime();
                 break;
-            case 8:{
+            case 8: {
                     Arvore arvore2;
                     cout << "Digite os nos da segunda arvore. Finalize com -1:" << endl;
                     do {
                         cin >> info;
                         if (info != -1) {
-                            arvore2.insereFilho(new NoArvore(info));
+                            arvore2.insereFilho(arvore2.get_Raiz(), new NoArvore(info));
                         }
                     } while (info != -1);
 
-                    if (arvore.igual(arvore2)) {
+                    if (arvore.igual(arvore2.get_Raiz())) {
                         cout << "As arvores sao iguais." << endl;
                     } else {
                         cout << "As arvores nao sao iguais." << endl;

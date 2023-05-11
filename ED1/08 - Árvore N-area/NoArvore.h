@@ -13,7 +13,11 @@ private:
     NoArvore* prox;
 
 public:
-    NoArvore(int info);
+    NoArvore(int info){
+        this->info = info;
+        prim = nullptr;
+        prox = nullptr;
+    }
 
     void set_Info(int v){
         info = v;
