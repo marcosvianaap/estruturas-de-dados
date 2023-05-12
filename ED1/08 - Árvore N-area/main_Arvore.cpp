@@ -1,11 +1,13 @@
 #include <iostream>
-#include "Arvore.h"
 #include "NoArvore.h"
+#include "Arvore.h"
+#include "Arvore.cpp"
+
 
 using namespace std;
 
 int main() {
-    Arvore arvore;
+    Arvore arvore, copia;
     int opcao, info;
     do {
         cout << "Escolha uma opcao:" << endl;
@@ -20,10 +22,10 @@ int main() {
         cout << "0 - Sair" << endl;
         cin >> opcao;
         switch (opcao) {
-             case 1:
-                cout << "Digite a informacao do no raiz: ";
+            case 1:
+                cout << "Digite o valor do no raiz: ";
                 cin >> info;
-                arvore.insereFilho(nullptr, new NoArvore(info));
+                arvore.set_Raiz(new NoArvore(info));
                 do {
                     cout << "Digite a informacao do no filho (ou -1 para sair): ";
                     cin >> info;
@@ -33,7 +35,7 @@ int main() {
                 } while (info != -1);
                 break;
             case 2:
-                arvore.imprime();
+                arvore.imprime(arvore.get_Raiz());
                 cout << endl;
                 break;
             case 3:
@@ -54,33 +56,22 @@ int main() {
             case 6:
                 cout << "A arvore possui " << arvore.folha() << " folhas." << endl;
                 break;
-            case 7:
-                Arvore copia = arvore.copia();
+             case 7:
+                copia.set_Raiz(arvore.copia(arvore.get_Raiz()));
                 cout << "Arvore original:" << endl;
-                arvore.imprime();
+                arvore.imprime(arvore.get_Raiz());
                 cout << "Arvore copiada:" << endl;
-                copia.imprime();
+                copia.imprime(copia.get_Raiz());
                 break;
-            case 8: {
-                    Arvore arvore2;
-                    cout << "Digite os nos da segunda arvore. Finalize com -1:" << endl;
-                    do {
-                        cin >> info;
-                        if (info != -1) {
-                            arvore2.insereFilho(arvore2.get_Raiz(), new NoArvore(info));
-                        }
-                    } while (info != -1);
-
-                    if (arvore.igual(arvore2.get_Raiz())) {
-                        cout << "As arvores sao iguais." << endl;
-                    } else {
-                        cout << "As arvores nao sao iguais." << endl;
-                    }
-                }
+            case 8:
+                cout << "Arvore original:" << endl;
+                arvore.imprime(arvore.get_Raiz());
+                cout << "Arvore copiada:" << endl;
+                copia.imprime(copia.get_Raiz());
                 break;
-
             default:
-                cout << "Opcao invalida." << endl;
+                cout << "Programa encerrado." << endl;
+                break;
         }
     } while (opcao != 0);
     return 0;

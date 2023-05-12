@@ -16,7 +16,12 @@ NoArvore* Arvore::get_Raiz() {
     return raiz; 
 }
 
-NoArvore* criaNo(int info){
+void Arvore::set_Raiz(NoArvore* novo) {
+    raiz = novo;
+}
+
+
+NoArvore* Arvore::criaNo(int info){
     NoArvore* novo = new NoArvore(info);
     novo->set_Prim(nullptr);
     novo->set_Prox(nullptr);
@@ -131,10 +136,6 @@ int Arvore::folha(NoArvore* no) {
     return cont;
 }
 
-bool Arvore::igual(Arvore& a) {
-    return igual(raiz, a.raiz);
-}
-
 bool Arvore::igual(NoArvore* n1, NoArvore* n2) {
     if (n1 == NULL && n2 == NULL) {
         return true;
@@ -160,12 +161,6 @@ bool Arvore::igual(NoArvore* n1, NoArvore* n2) {
 
         return true;
     }
-}
-
-Arvore Arvore::copia() {
-    Arvore nova_arvore;
-    nova_arvore.raiz = copia(raiz);
-    return nova_arvore;
 }
 
 NoArvore* Arvore::copia(NoArvore* no) {
